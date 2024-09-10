@@ -1,0 +1,3 @@
+"0","library(knitr)"
+"0",""
+"0","head(poly1[, c(4:5, 7)]) %>% kable"

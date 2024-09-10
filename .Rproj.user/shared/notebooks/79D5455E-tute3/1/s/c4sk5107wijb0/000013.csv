@@ -1,0 +1,6 @@
+"0","  # Maxnet modeling
+  me <-maxent(hist, x)
+"
+"2","錯誤發生在 .jcheck(silent = TRUE)： 
+  No running JVM detected. Maybe .jinit() would help.
+"
