@@ -1,6 +1,24 @@
-"0","# Download OBIS data
-po1 <- occurrence(scientificname = ""Polychaeta"", areaid = 34302)
+"0","library(robis)"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
 "
+"2","
+載入套件：‘robis’
+
+"
+"2","下列物件被遮斷自 ‘package:patchwork’:
+
+    area
+
+"
+"2","下列物件被遮斷自 ‘package:raster’:
+
+    area
+
+"
+"0","# Download OBIS data"
+"0","po1 <- occurrence(scientificname = ""Polychaeta"", areaid = 34302)"
 "2","Retrieved 5000 records of approximately 9860 (50%)"
 "2","Retrieved 9860 records of approximately 9860 (100%)"
 "0","po2 <- occurrence(scientificname = ""Polychaeta"", areaid = 34332)"
@@ -12,3 +30,15 @@ po1 <- occurrence(scientificname = ""Polychaeta"", areaid = 34302)
 "2","Retrieved 183 records of approximately 183 (100%)"
 "0","sh2 <- occurrence(scientificname = ""Alpheus"", areaid = 34332)"
 "2","Retrieved 839 records of approximately 839 (100%)"
+"0","# The Fish Database of Taiwan"
+"0","fis <- cbind(coordinates(fish) %>% as.data.frame(), scientificName=fish$scientificName, Taxa=""Fish"")"
+"0",""
+"0","# Combine all occurrence data"
+"0","occ <- rbind(po1[, c(4:5, 7)] %>% cbind(Taxa=""Polychaeta""), "
+"0","             po2[, c(4:5, 7)] %>% cbind(Taxa=""Polychaeta""), "
+"0","             sh1[, c(4:5, 7)] %>% cbind(Taxa=""Alpheus Shrimp""), "
+"0","             sh2[, c(4:5, 7)] %>% cbind(Taxa=""Alpheus Shrimp""),"
+"0","             fis"
+"0","             )"
+"0",""
+"0","occ <- subset(occ, decimalLatitude>=16.5 & decimalLatitude <=28 & decimalLongitude>=113.5 & decimalLongitude <=124.5)"

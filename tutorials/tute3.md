@@ -1,15 +1,10 @@
 Applying seafloor climate change data for habitat suitability modeling
 ================
 Chih-Lin Wei
-2024-09-10
+2024-09-12
 
 ``` r
 library(TaiwanSSP585)
-library(ggplot2)
-library(dplyr)
-library(tidyr)
-library(RColorBrewer)
-library(sf)
 ```
 
 # Species occurrence data
@@ -75,22 +70,9 @@ then overlay them on top of the
 raster to see the data distribution.
 
 ``` r
-bathy <- etopo2022 %>% as.data.frame(xy = TRUE, na.rm= TRUE) 
-
-ggplot(bathy) +
-  geom_raster(aes(x=x, y=y, fill=-layer))+
-  geom_polygon(data=land, aes(x=X, y=Y, group=PID), fill="bisque2", colour="transparent")+
-  geom_sf(data=as(eez, "sf"), fill="transparent", colour="red")+
-  geom_contour(data=bathy, aes(x=x, y=y, z=layer), breaks=-200, linetype=2, colour="gray50")+
-  geom_contour(data=bathy, aes(x=x, y=y, z=layer), breaks=-4000, linetype=1, colour="gray50")+
+basemap(-etopo2022, title="Depth (m)", colours = terrain.colors(7))+
   geom_point(data=occ, aes(x=decimalLongitude, y=decimalLatitude), size=0.5)+
-  facet_wrap(~Taxa)+
-  scale_fill_gradientn(colours=terrain.colors(7), na.value="white")+
-  scale_x_continuous(expand = expansion(mult = 0))+
-  scale_y_continuous(expand = expansion(mult = 0))+
-  labs(x=NULL, y=NULL, fill="Depth\n(m)")+
-  theme_bw() %+replace% theme(legend.position = "right", legend.key.width =  unit(0.5, 'cm'),
-                              strip.background = element_blank())
+  facet_wrap(~Taxa)
 ```
 
 ![](tute3_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
@@ -193,13 +175,14 @@ dat <- lapply(r, FUN=function(x){
 }) %>% ldply(.id="Taxa")
 dat$var <- factor(dat$var, labels=c("1951-2000", "2041-2060", "2081-2100"))
 
+bathy <- etopo2022 %>% as.data.frame(xy=TRUE, na.rm=TRUE)
 ggplot(dat) +
   geom_raster(aes(x=x, y=y, fill=value))+
   geom_polygon(data=land, aes(x=X, y=Y, group=PID), fill="bisque2", colour="transparent")+
   geom_sf(data=as(eez, "sf"), fill="transparent", colour="red")+
   geom_contour(data=bathy, aes(x=x, y=y, z=layer), breaks=-200, linetype=2, colour="gray50")+
   geom_contour(data=bathy, aes(x=x, y=y, z=layer), breaks=-4000, linetype=1, colour="gray50")+
-  #geom_point(data=occ, aes(x=decimalLongitude, y=decimalLatitude), size=0.2)+
+  geom_point(data=occ, aes(x=decimalLongitude, y=decimalLatitude), size=0.2)+
   facet_grid(Taxa~var)+
   scale_fill_gradientn(colours=brewer.pal(10, 'RdYlBu') %>% rev, na.value="white")+
   scale_x_continuous(expand = expansion(mult = 0))+

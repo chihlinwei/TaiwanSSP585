@@ -1,0 +1,3 @@
+"0","all <- overlay(subset(cmip6_extoe_constant, 1:4), fun=max)"
+"0","names(all) <- ""cmip6_extoe_constant"""
+"0","plotmap(r=all, titles=""When~climate~change>2*sigma"", colours=brewer.pal(10, 'RdYlBu'))"

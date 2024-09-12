@@ -25,54 +25,8 @@
 #' @source \url{https://esgf-node.llnl.gov/search/esgf-llnl/}
 #' @name cmip6_extoe_constant
 #' @examples
-#' library(ggplot2)
-#' library(dplyr)
-#' library(patchwork)
-#' library(tidyr)
-#' library(RColorBrewer)
-#' library(sf)
-#'
-#' # Convert raster to data frame and then to list
-#' cmip6_list <- subset(cmip6_extoe_constant, 1:4) %>%
-#'   as.data.frame(xy = TRUE) %>%
-#'   gather(-x, -y, key = "var", value = "value") %>%
-#'   group_split(var)
-#'
-#' # Depth
-#' bathy <- etopo2022%>% as.data.frame(xy = TRUE) %>% na.omit
-#'
-#' # ggolot list
-#' gg_list = lapply(cmip6_list, function(dat) {
-#'   ggplot(dat) +
-#'     geom_raster(aes(x=x, y=y, fill=value))+
-#'     geom_polygon(data=land, aes(x=X, y=Y, group=PID), fill="bisque2", colour="black")+
-#'     geom_sf(data=as(eez, "sf"), fill="transparent", colour="red")+
-#'     geom_contour(data=bathy, aes(x=x, y=y, z=layer), breaks=-200, linetype=2, colour="gray50")+
-#'     geom_contour(data=bathy, aes(x=x, y=y, z=layer), breaks=seq(-6000, -1000, by=1000), linetype=1, colour="gray50")+
-#'     scale_fill_gradientn(colours = brewer.pal(10, 'RdYlBu'))+
-#'     scale_x_continuous(expand = expansion(mult = 0))+
-#'     scale_y_continuous(expand = expansion(mult = 0))+
-#'     labs(x="Longitude", y="Latitude", fill="Year")+
-#'     facet_wrap(~ var) +
-#'     theme_bw()
-#' })
-#'
-#' # Wrap ggplot list
-#' wrap_plots(gg_list)
+#' plotmap(subset(cmip6_extoe_constant, 1:4))
 #'
 #' # Overall time of emergence of climate change hazards for export POC flux, dissolved oxygen, pH, and temperature
-#' dat <- overlay(subset(cmip6_extoe_constant, 1:4), fun=max) %>%
-#'   as.data.frame(xy = TRUE)
-#'
-#' ggplot(dat) +
-#'   geom_raster(aes(x=x, y=y, fill=layer))+
-#'   geom_polygon(data=land, aes(x=X, y=Y, group=PID), fill="bisque2", colour="black")+
-#'   geom_sf(data=as(eez, "sf"), fill="transparent", colour="red")+
-#'   geom_contour(data=bathy, aes(x=x, y=y, z=layer), breaks=-200, linetype=2, colour="gray50")+
-#'   geom_contour(data=bathy, aes(x=x, y=y, z=layer), breaks=seq(-6000, -1000, by=1000), linetype=1, colour="gray50")+
-#'   scale_fill_gradientn(colours = brewer.pal(10, 'RdYlBu'))+
-#'   scale_x_continuous(expand = expansion(mult = 0))+
-#'   scale_y_continuous(expand = expansion(mult = 0))+
-#'   labs(x="Longitude", y="Latitude", fill="Year")+
-#'   theme_bw()
+#' plotmap(overlay(subset(cmip6_extoe_constant, 1:4), fun=max), titles="Year")
 NULL

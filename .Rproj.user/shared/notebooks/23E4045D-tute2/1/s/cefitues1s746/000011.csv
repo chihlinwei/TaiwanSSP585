@@ -1,5 +1,0 @@
-"0",""
-"0","# Violin plots"
-"0","p2 <- ggplot(data=mask_habitat(all))+"
-"0","  geom_violin(aes(x=Habitat, y=value), scale = ""width"")+"
-"0","  labs(y=""Time of Emergence of Climate Change"")"

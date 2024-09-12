@@ -1,0 +1,2 @@
+"0","plotmap(r=cmip6_1950_2000_sd %>% subset(1:4), "
+"0","         titles = c(""POC~flux~(mgC~m^-2*d^-1)"", ""DO~(mol~m^-3)"", ""pH"", ""Temperature~(degree*C)""))"

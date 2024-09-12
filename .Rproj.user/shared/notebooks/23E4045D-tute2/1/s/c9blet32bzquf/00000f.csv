@@ -1,0 +1,2 @@
+"0","plotmap(cmip6_extoe_constant %>% subset(1:4) %>% mask(eez), colours = brewer.pal(10, 'RdYlBu'), "
+"0","         titles=c(""When~Delta~POC~flux>2*sigma"", ""When~Delta~DO>2*sigma"", ""When~Delta~pH>2*sigma"", ""When~Delta~Temperature>2*sigma""))"
