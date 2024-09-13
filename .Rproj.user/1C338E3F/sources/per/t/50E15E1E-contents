@@ -1,0 +1,63 @@
+---
+title: "Download IPCC6 CMIP6 data"
+author: "Chih-Lin Wei"
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  message=FALSE,
+  warning=FALSE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(ncdf4)
+library(scmisc)
+library(abind)
+library(dplyr)
+```
+
+
+
+# GFDL-ESM4
+
+The example potential temperature data from 2015 to 2100 were downloaded from [Earth System Grid Federation (ESGF)](https://aims2.llnl.gov/search/?project=CMIP6&resultType=originals+only&activeFacets=%7B%22variable_id%22%3A%22thetao%22%2C%22cf_standard_name%22%3A%22sea_water_potential_temperature%22%2C%22realm%22%3A%22ocean%22%2C%22frequency%22%3A%22mon%22%2C%22table_id%22%3A%22Omon%22%2C%22institution_id%22%3A%22NOAA-GFDL%22%2C%22source_id%22%3A%22GFDL-ESM4%22%2C%22experiment_id%22%3A%22ssp585%22%2C%22variant_label%22%3A%22r1i1p1f1%22%2C%22grid_label%22%3A%22gr%22%2C%22sub_experiment_id%22%3A%22none%22%2C%22nominal_resolution%22%3A%221x1+degree%22%7D)
+
+```{r}
+# Source file urls
+url <- "http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp585/r1i1p1f1/Omon/thetao/gr/v20180701/thetao_Omon_GFDL-ESM4_ssp585_r1i1p1f1_gr_201501-203412.nc"
+
+# Path to save the files
+destfile <- paste("C:/Users/user/Downloads/", basename(url), sep="")
+```
+
+```{r, eval=FALSE}
+# Download CMIP6 data
+# Very large files (865 MB)
+download.file(url = url, destfile = destfile, mode = "wb")
+```
+# Monthly thetao from 2041 to 2060
+
+```{r}
+# Seasurface temperature
+m <- nc_open(destfile) 
+
+# Keep bottom most layer
+thetao <- ncvar_get(m, "thetao") %>% keep_b
+```
+
+```{r}
+# Convert to latlon projection
+y <- as.vector(ncvar_get(m, "lat"))
+x <- as.vector(ncvar_get(m, "lon"))
+x[x>180] <- x[x>180]-360
+x <- rep(x, 180)
+y <- rep(y, each=360)
+dat <- na.omit(data.frame(cbind(x, y, value=thetao[,,240] %>% as.vector )))
+basemap(dat, title="Dec~2034~Seafloor~Temperature~(degree~C)")
+```
+

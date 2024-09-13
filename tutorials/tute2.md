@@ -1,7 +1,7 @@
 Extract seafloor climate change data by polygon, polyline, or points
 ================
 Chih-Lin Wei
-2024-09-12
+2024-09-13
 
 ``` r
 library(TaiwanSSP585)
@@ -40,7 +40,7 @@ basemap(-etopo2022, title="Depth (m)", colours = terrain.colors(7))+
 For example, we can mask the climate change hazards between 2041 and
 2060 by the Taiwan EEZ polygon. The following maps show the degree of
 climate change (or climate change hazards) from 2041 to 2060 in the unit
-of historical variability from 1951 to 2000. We can see the variations
+of historical variability from 1950 to 2014. We can see the variations
 within the EEZ better this way.
 
 ``` r

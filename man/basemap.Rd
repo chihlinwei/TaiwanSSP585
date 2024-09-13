@@ -9,11 +9,11 @@ basemap(r, title = names(r), colours = NULL, ranges = c(0, 1))
 \arguments{
 \item{r}{A Raster or RasterBrick object}
 
+\item{title}{A character string of the map title}
+
 \item{colours}{A vector of colors to use for the color key}
 
 \item{ranges}{A numeric vector of length two providing quantile limits for the color key scale}
-
-\item{titles}{A character vector string of the map titles}
 }
 \value{
 This function returns a base ggplot object, so other ggplot components can be added.

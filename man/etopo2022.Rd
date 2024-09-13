@@ -15,6 +15,6 @@ A RasterBrick of the Global Relief Model. A multi-layer raster object compiled f
 The grid resolution is reduced from 1 minutes to 0.25 degree by averaging.
 }
 \examples{
-plotmap(-etopo2022, colours=terrain.colors(7), titles="Depth (m)")
+plotmap(-etopo2022, colours=terrain.colors(7), title="Depth (m)")
 }
 \keyword{datasets}

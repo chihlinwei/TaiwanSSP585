@@ -1,7 +1,7 @@
 Display seafloor climate change data
 ================
 Chih-Lin Wei
-2024-09-12
+2024-09-13
 
 ``` r
 library(TaiwanSSP585)
@@ -22,7 +22,7 @@ value (ph), potential temperature (thetao), aragonite concentration
 expressed as carbon in sea water (co3), carbonate ion concentration for
 seawater in equilibrium with pure aragonite (co3satarag), and carbonate
 ion concentration for seawater in equilibrium with pure calcite
-(aragsat) for the historical scenario from 1951 to 2000 and Shared
+(aragsat) for the historical scenario from 1950 to 2014 and Shared
 Socioeconomic Pathways (SSPs) until 2100.
 
 Some parameters were derived from the model outputs as well. For
@@ -52,7 +52,7 @@ earth system model in the x, y, and z directions.
 | NorESM2-MM    | 360 | 385 | 53  |
 
 The yearly outputs of each earth system model were averaged at the
-bottommost grids for the time periods 1951 to 2000, 2041 to 2060, and
+bottommost grids for the time periods 1950 to 2014, 2041 to 2060, and
 2081 to 2100. The decadal averages of each parameter were then
 interpolated to 0.25 by 0.25-degree grids and computed for ensemble
 averages across the five models. All CMIP6 data were downloaded from
@@ -62,7 +62,7 @@ We can use this dataset to study the occurrence and impact of climate
 change hazards on deep-sea floors. As biological communities adapt to
 long-term stability or variability in environmental conditions, we can
 establish the historical variability (standard deviation between
-1951-2000) as a reference point. Climate change can then be defined as
+1950-2014) as a reference point. Climate change can then be defined as
 the difference between future conditions and the historical average.
 Climate change hazard, on the other hand, is the ratio of climate change
 to historical variability. The time of emergence (ToE) of climate change
@@ -78,17 +78,17 @@ climate hazard could be 10 or 100 times its historical variability.
 
 Here we used plotmap function to map the historical projections of
 export POC flux (epc), dissolved oxygen concentration (o2), pH values
-(ph), and potential temperature (thetao) from 1950 to 2000. Let’s look
+(ph), and potential temperature (thetao) from 1950 to 2014. Let’s look
 at the R documentation to see what’s inside the raster brick data and
 plotmap function.
 
 ``` r
-help("cmip6_1950_2000_av")
+help("cmip6_1950_2014_av")
 help('plotmap')
 ```
 
 ``` r
-plotmap(r = cmip6_1950_2000_av %>% subset(1:4), 
+plotmap(r = cmip6_1950_2014_av %>% subset(1:4), 
          titles = c("POC~flux~(mgC~m^-2*d^-1)", "DO~(mol~m^-3)", "pH", "Temperature~(degree*C)"))
 ```
 
@@ -98,10 +98,10 @@ plotmap(r = cmip6_1950_2000_av %>% subset(1:4),
 
 The historical standard deviation of export POC flux (epc), dissolved
 oxygen concentration (o2), pH values (ph), and potential temperature
-(thetao) from 1950 to 2000 can also be displayed in the same manner.
+(thetao) from 1950 to 2014 can also be displayed in the same manner.
 
 ``` r
-plotmap(r=cmip6_1950_2000_sd %>% subset(1:4), 
+plotmap(r=cmip6_1950_2014_sd %>% subset(1:4), 
          titles = c("POC~flux~(mgC~m^-2*d^-1)", "DO~(mol~m^-3)", "pH", "Temperature~(degree*C)"))
 ```
 
@@ -122,7 +122,7 @@ plotmap(r=cmip6_2041_2060_av %>% subset(1:4),
 # Climate changes between future and historical projections
 
 We then map the climate changes as the the difference between 1950 and
-2000 and 2041 to 2060. Here, we should modify the color key to visualize
+2014 and 2041 to 2060. Here, we should modify the color key to visualize
 the difference better.
 
 ``` r
@@ -258,7 +258,7 @@ plotmap(r=cmip6_2041_2060_voccMeg %>% cum_imp,
 
 - Display the average seafloor climate changes of export POC flux (epc),
   dissolved oxygen concentration (o2), pH values (ph), and potential
-  temperature (thetao) between 1950 to 2000 and 2081 to 2100.
+  temperature (thetao) between 1950 to 2014 and 2081 to 2100.
 
 - Display the average climate change hazards of export POC flux (epc),
   dissolved oxygen concentration (o2), pH values (ph), and potential

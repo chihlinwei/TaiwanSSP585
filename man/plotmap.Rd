@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotmap.R
 \name{plotmap}
 \alias{plotmap}
-\title{A simple plotting function for multi-panel maps}
+\title{A simple plotting function for multi-panel maps with independent color keys}
 \usage{
 plotmap(r, titles = names(r), colours = NULL, ranges = c(0, 1))
 }
@@ -16,7 +16,7 @@ plotmap(r, titles = names(r), colours = NULL, ranges = c(0, 1))
 \item{ranges}{A numeric vector of length two providing quantile limits for the color key scale}
 }
 \description{
-This function is a wrapper of  \code{\link{ggplot2}}
+This function is a wrapper of  \code{\link{ggplot2}} and \code{\link[patchwork]{wrap_plots}}
 }
 \details{
 This is a simple map function to visualize multiple ensemble average of seafloor climate projections.

@@ -1,7 +1,7 @@
 Applying seafloor climate change data for habitat suitability modeling
 ================
 Chih-Lin Wei
-2024-09-12
+2024-09-13
 
 ``` r
 library(TaiwanSSP585)
@@ -85,22 +85,22 @@ data for simple habitat suitability modeling using
 from the
 [dismo](https://www.rdocumentation.org/packages/dismo/versions/1.3-14)
 package. Here, we’d like to model the species occurrence using the
-historical projection from 1950 to 2000 and then the
+historical projection from 1950 to 2014 and then the
 [Maxent](https://www.rdocumentation.org/packages/dismo/versions/1.3-14/topics/maxent)
 model to predict their habitat suitability in 2041 to 2060 and 2081 to
 2100. Therefore, we need three sets of annual average of the climate
-change projections for 1950 to 2000, 2041 to 2060, and 2081 to 2100.
+change projections for 1950 to 2014, 2041 to 2060, and 2081 to 2100.
 Because water depth is usually the most critical factor controlling the
 species distribution in the deep sea, we also add the
 [etopo2022](https://www.ncei.noaa.gov/products/etopo-global-relief-model)
 global relief model into the predictors. The predictor names are
 modified (e.g., removing the years) to be consistent across 1950 to
-2000, 2041 to 2060, and 2081 to 2100 for the convenience of modeling and
+2014, 2041 to 2060, and 2081 to 2100 for the convenience of modeling and
 predictions.
 
 ``` r
-hist <- addLayer(etopo2022, cmip6_1950_2000_av)
-names(hist)[-1] <- gsub("_av_1950_to_2000", "", names(cmip6_1950_2000_av))
+hist <- addLayer(etopo2022, cmip6_1950_2014_av)
+names(hist)[-1] <- gsub("_av_1950_to_2014", "", names(cmip6_1950_2014_av))
 
 proj1 <- addLayer(etopo2022, cmip6_2041_2060_av)
 names(proj1)[-1] <- gsub("_av_2041_2060", "", names(cmip6_2041_2060_av))
@@ -137,7 +137,7 @@ r <- lapply(splitBy(~Taxa, occ), FUN = function(x){
   me <-maxent(hist, x)
   # Predict habitat suitability
   out <- addLayer(predict(me, hist), predict(me, proj1), predict(me, proj2))
-  names(out) <- c("Y1950_2000", "Y2041_2060", "Y2081_2100")
+  names(out) <- c("Y1950_2014", "Y2041_2060", "Y2081_2100")
   return(out)
 })
 ```
@@ -163,7 +163,7 @@ raster::extract(hist, occ[,c("decimalLongitude", "decimalLatitude")]) %>% head(5
 # Habitat suitability projections
 
 Finally, we map the projected habitat suitability of polychaeta and
-Alpheus snapping shrimp for the years 1951 to 2000, 2041 to 2060, and
+Alpheus snapping shrimp for the years 1950 to 2014, 2041 to 2060, and
 2081 to 2100, respectively.
 
 ``` r
@@ -173,22 +173,11 @@ library(plyr)
 dat <- lapply(r, FUN=function(x){
   x %>% as.data.frame(xy = TRUE, na.rm = TRUE) %>% gather(-x, -y, key = "var", value = "value")
 }) %>% ldply(.id="Taxa")
-dat$var <- factor(dat$var, labels=c("1951-2000", "2041-2060", "2081-2100"))
+dat$var <- factor(dat$var, labels=c("1950-2014", "2041-2060", "2081-2100"))
 
-bathy <- etopo2022 %>% as.data.frame(xy=TRUE, na.rm=TRUE)
-ggplot(dat) +
-  geom_raster(aes(x=x, y=y, fill=value))+
-  geom_polygon(data=land, aes(x=X, y=Y, group=PID), fill="bisque2", colour="transparent")+
-  geom_sf(data=as(eez, "sf"), fill="transparent", colour="red")+
-  geom_contour(data=bathy, aes(x=x, y=y, z=layer), breaks=-200, linetype=2, colour="gray50")+
-  geom_contour(data=bathy, aes(x=x, y=y, z=layer), breaks=-4000, linetype=1, colour="gray50")+
+basemap(dat, title = "Habitat~Sitability", colours=brewer.pal(10, 'RdYlBu') %>% rev)+
   geom_point(data=occ, aes(x=decimalLongitude, y=decimalLatitude), size=0.2)+
-  facet_grid(Taxa~var)+
-  scale_fill_gradientn(colours=brewer.pal(10, 'RdYlBu') %>% rev, na.value="white")+
-  scale_x_continuous(expand = expansion(mult = 0))+
-  scale_y_continuous(expand = expansion(mult = 0))+
-  labs(x=NULL, y=NULL, fill="Habitat\nSuitability")+
-  theme_bw() %+replace% theme(legend.position = "top", legend.key.width =  unit(1, 'cm'))
+  facet_grid(Taxa~var)
 ```
 
 ![](tute3_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
@@ -198,5 +187,5 @@ ggplot(dat) +
 - Download other occurrence data from OBIS and display them on maps.
 
 - Construct species distribution models using historical projection
-  (1950 t0 2000) with Maxent and predict and map the historical and
+  (1950 t0 2014) with Maxent and predict and map the historical and
   future species habitat suitability from 2041 to 2060 and 2081 to 2100.

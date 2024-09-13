@@ -1,0 +1,5 @@
+"0","# Source file urls"
+"0","url <- ""http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp585/r1i1p1f1/Omon/thetao/gr/v20180701/thetao_Omon_GFDL-ESM4_ssp585_r1i1p1f1_gr_201501-203412.nc"""
+"0",""
+"0","# Path to save the files"
+"0","destfile <- paste(""C:/Users/user/Downloads/"", basename(url), sep="""")"

@@ -11,10 +11,10 @@ co3satcalc <- brick("G:/CMIP6_Taiwan/Raster/co3satcalcBottom/co3satcalcBottom_av
 aragsat <- brick("G:/CMIP6_Taiwan/Raster/aragsatBottom/aragsatBottom_avg_ssp126.grd")
 calcsat <- brick("G:/CMIP6_Taiwan/Raster/calcsatBottom/calcsatBottom_avg_ssp126.grd")
 
-cmip6_1950_2000_av <- brick(subset(epc, 1), subset(o2, 1), subset(ph, 1), subset(thetao, 1),
+cmip6_1950_2014_av <- brick(subset(epc, 1), subset(o2, 1), subset(ph, 1), subset(thetao, 1),
                             subset(arag, 1), subset(calc, 1), subset(co3, 1), subset(co3satarag, 1), subset(co3satcalc, 1),
                             subset(aragsat, 1), subset(calcsat, 1))
-save(cmip6_1950_2000_av, file="data/cmip6_1950_2000_av.rda")
+save(cmip6_1950_2014_av, file="data/cmip6_1950_2014_av.rda")
 cmip6_2041_2060_av <- brick(subset(epc, 2), subset(o2, 2), subset(ph, 2), subset(thetao, 2),
                             subset(arag, 2), subset(calc, 2), subset(co3, 2), subset(co3satarag, 2), subset(co3satcalc, 2),
                             subset(aragsat, 2), subset(calcsat, 2))
@@ -24,10 +24,10 @@ cmip6_2081_2100_av <- brick(subset(epc, 3), subset(o2, 3), subset(ph, 3), subset
                             subset(aragsat, 3), subset(calcsat, 3))
 save(cmip6_2081_2100_av, file="data/cmip6_2081_2100_av.rda")
 
-cmip6_1950_2000_cv <- brick(subset(epc, 4), subset(o2, 4), subset(ph, 4), subset(thetao, 4),
+cmip6_1950_2014_cv <- brick(subset(epc, 4), subset(o2, 4), subset(ph, 4), subset(thetao, 4),
                             subset(arag, 4), subset(calc, 4), subset(co3, 4), subset(co3satarag, 4), subset(co3satcalc, 4),
                             subset(aragsat, 4), subset(calcsat, 4))
-save(cmip6_1950_2000_cv, file="data/cmip6_1950_2000_cv.rda")
+save(cmip6_1950_2014_cv, file="data/cmip6_1950_2014_cv.rda")
 cmip6_2041_2060_cv <- brick(subset(epc, 5), subset(o2, 5), subset(ph, 5), subset(thetao, 5),
                             subset(arag, 5), subset(calc, 5), subset(co3, 5), subset(co3satarag, 5), subset(co3satcalc, 5),
                             subset(aragsat, 5), subset(calcsat, 5))
@@ -37,10 +37,10 @@ cmip6_2081_2100_cv <- brick(subset(epc, 6), subset(o2, 6), subset(ph, 6), subset
                             subset(aragsat, 6), subset(calcsat, 6))
 save(cmip6_2081_2100_cv, file="data/cmip6_2081_2100_cv.rda")
 
-cmip6_1950_2000_sd <- brick(subset(epc, 7), subset(o2, 7), subset(ph, 7), subset(thetao, 7),
+cmip6_1950_2014_sd <- brick(subset(epc, 7), subset(o2, 7), subset(ph, 7), subset(thetao, 7),
                             subset(arag, 7), subset(calc, 7), subset(co3, 7), subset(co3satarag, 7), subset(co3satcalc, 7),
                             subset(aragsat, 7), subset(calcsat, 7))
-save(cmip6_1950_2000_sd, file="data/cmip6_1950_2000_sd.rda")
+save(cmip6_1950_2014_sd, file="data/cmip6_1950_2014_sd.rda")
 cmip6_2041_2060_sd <- brick(subset(epc, 8), subset(o2, 8), subset(ph, 8), subset(thetao, 8),
                             subset(arag, 8), subset(calc, 8), subset(co3, 8), subset(co3satarag, 8), subset(co3satcalc, 8),
                             subset(aragsat, 8), subset(calcsat, 8))
@@ -86,10 +86,10 @@ cmip6_extoe_constant <- brick(subset(epc, 17), subset(o2, 17), subset(ph, 17), s
                               subset(aragsat, 17), subset(calcsat, 17))
 save(cmip6_extoe_constant, file="data/cmip6_extoe_constant.rda")
 
-cmip6_1950_2000_voccMeg <- brick(subset(epc, 18), subset(o2, 18), subset(ph, 18), subset(thetao, 18),
+cmip6_1950_2014_voccMeg <- brick(subset(epc, 18), subset(o2, 18), subset(ph, 18), subset(thetao, 18),
                             subset(arag, 18), subset(calc, 18), subset(co3, 18), subset(co3satarag, 18), subset(co3satcalc, 18),
                             subset(aragsat, 18), subset(calcsat, 18))
-save(cmip6_1950_2000_voccMeg, file="data/cmip6_1950_2000_voccMeg.rda")
+save(cmip6_1950_2014_voccMeg, file="data/cmip6_1950_2014_voccMeg.rda")
 cmip6_2041_2060_voccMeg <- brick(subset(epc, 19), subset(o2, 19), subset(ph, 19), subset(thetao, 19),
                             subset(arag, 19), subset(calc, 19), subset(co3, 19), subset(co3satarag, 19), subset(co3satcalc, 19),
                             subset(aragsat, 19), subset(calcsat, 19))
@@ -99,10 +99,10 @@ cmip6_2081_2100_voccMeg <- brick(subset(epc, 20), subset(o2, 20), subset(ph, 20)
                             subset(aragsat, 20), subset(calcsat, 20))
 save(cmip6_2081_2100_voccMeg, file="data/cmip6_2081_2100_voccMeg.rda")
 
-cmip6_1950_2000_voccAng <- brick(subset(epc, 21), subset(o2, 21), subset(ph, 21), subset(thetao, 21),
+cmip6_1950_2014_voccAng <- brick(subset(epc, 21), subset(o2, 21), subset(ph, 21), subset(thetao, 21),
                                  subset(arag, 21), subset(calc, 21), subset(co3, 21), subset(co3satarag, 21), subset(co3satcalc, 21),
                                  subset(aragsat, 21), subset(calcsat, 21))
-save(cmip6_1950_2000_voccAng, file="data/cmip6_1950_2000_voccAng.rda")
+save(cmip6_1950_2014_voccAng, file="data/cmip6_1950_2014_voccAng.rda")
 cmip6_2041_2060_voccAng <- brick(subset(epc, 22), subset(o2, 22), subset(ph, 22), subset(thetao, 22),
                                  subset(arag, 22), subset(calc, 22), subset(co3, 22), subset(co3satarag, 22), subset(co3satcalc, 22),
                                  subset(aragsat, 22), subset(calcsat, 22))

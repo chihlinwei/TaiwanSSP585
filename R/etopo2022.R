@@ -9,5 +9,5 @@
 #' @source \url{https://www.ncei.noaa.gov/products/etopo-global-relief-model}
 #' @name etopo2022
 #' @examples
-#' plotmap(-etopo2022, colours=terrain.colors(7), titles="Depth (m)")
+#' plotmap(-etopo2022, colours=terrain.colors(7), title="Depth (m)")
 NULL

@@ -1,6 +1,6 @@
-#' A simple plotting function for multi-panel maps
+#' A simple plotting function for multi-panel maps with independent color keys
 #'
-#' This function is a wrapper of  \code{\link{ggplot2}}
+#' This function is a wrapper of  \code{\link{ggplot2}} and \code{\link[patchwork]{wrap_plots}}
 #'
 #' @details This is a simple map function to visualize multiple ensemble average of seafloor climate projections.
 #' First, the RasterBrick containing climate projections is subseted and converted into a data frame. Next, we

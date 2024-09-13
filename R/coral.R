@@ -18,6 +18,5 @@
 #' @name coral
 #' @examples
 #' basemap(-etopo2022, title="Depth (m)", colours = terrain.colors(7))+
-#' geom_sf(data=as(eez, "sf"), fill="transparent", colour="red")+
 #' geom_sf(data=as(coral, "sf"), size=0.8)
 NULL
