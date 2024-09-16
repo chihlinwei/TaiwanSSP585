@@ -1,0 +1,4 @@
+"0","# Coordinates of each grid"
+"0","y <- as.vector(ncvar_get(m1, ""latitude""))"
+"0","x <- as.vector(ncvar_get(m1, ""longitude""))"
+"0","x[x>180] <- x[x>180]-360"

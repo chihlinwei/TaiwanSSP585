@@ -1,5 +1,0 @@
-"0","# Keep bottom most layer
-thetao <- ncvar_get(m, ""thetao"") %>% keep_b
-"
-"2","錯誤發生在 abind(y, b, along = 3)： 沒有這個函式 ""abind""
-"

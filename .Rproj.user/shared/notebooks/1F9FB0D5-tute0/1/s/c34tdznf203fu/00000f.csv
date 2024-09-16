@@ -1,0 +1,6 @@
+"0","# First layer of b1"
+"0","b2021 <- cbind(x, y, value=b1[,,1] %>% as.vector) %>% data.frame %>%　na.omit"
+"0","# 10th layer of b2"
+"0","b2100 <- cbind(x, y, value=b2[,,10] %>% as.vector) %>% data.frame %>%　na.omit"
+"0",""
+"0","out <- rbind(cbind(b2021, year=2021), cbind(b2100, year=2100))"
