@@ -3,7 +3,7 @@
     "path": "~/GitHub/TaiwanSSP585/tutorials/tute0.Rmd",
     "project_path": "tutorials/tute0.Rmd",
     "type": "r_markdown",
-    "hash": "1684233216",
+    "hash": "2970642301",
     "contents": "",
     "dirty": false,
     "created": 1726462118780.0,
@@ -13,16 +13,16 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "74,78",
-        "scrollLine": "71",
-        "last_setup_crc32": "3aab4a2c9c6e5836"
+        "cursorPosition": "205,30",
+        "scrollLine": "209",
+        "last_setup_crc32": "2b93b88c9c6e5836"
     },
     "folds": "",
-    "lastKnownWriteTime": 1726470228,
+    "lastKnownWriteTime": 1726651066,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1726470228104,
+    "last_content_update": 1726651066551,
     "read_only": false,
     "read_only_alternatives": []
 }

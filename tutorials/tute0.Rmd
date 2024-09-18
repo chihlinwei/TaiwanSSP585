@@ -21,27 +21,56 @@ library(dplyr)
 library(ggplot2)
 ```
 
+# Shared Socioeconomic Pathways (SSP)
+
+In the context of the World Climate Research Programme's Coupled Model Intercomparison Project 6 (CMIP6), climate scientists have conducted simulations to predict climate change in the 21st century. These simulations were carried out based on the Shared Socioeconomic Pathways (SSP) scenarios for the Intergovernmental Panel on Climate Change's sixth assessment report (IPCC AR6) released in 2021. The purpose of the Shared Socioeconomic Pathways (SSP) scenarios is to enable comparison of climate simulations conducted by research institutes worldwide.
+
+The IPCC AR6 introduces five new SSP scenarios. For instance, SSP1 represents a sustainable and "green" pathway, envisioning a more environmentally sustainable world. SSP2 reflects a "middle of the road" or moderate pathway. SSP3 portrays national or regional conflicts as well as policies focusing increasingly on matters of national and regional security. SSP4 illustrates regional disparities in development, education, and environmental policy. SSP5 assumes a development path heavily reliant on fossil fuels.
+
+These SSPs are built upon their predecessors, the Representative Concentration Pathways (RCP), which were used for CMIP5. The RCPs delineated various levels of climate change and the extent of additional radiative forcing due to human-induced greenhouse gas emissions. The climate effects classes from RCP2.6, RCP4.5, RCP6.0, and RCP8.5 have been integrated into the SSPs, effectively combining the five socioeconomic pathways with different climate forcings. Below is a table from [IPCC (2021)](https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM.pdf) demonstrating the Shared Socioeconomic Pathways (SSP) used in the IPCC Sixth Assessment Report (AR6).
+
+| SSP	      |Scenario                                                                                                                    | Estimated warming (2041–2060) |	Estimated warming (2081–2100)	| Very likely range of warming (2081–2100) |
+|-----------|----------------------------------------------------------------------------------------------------------------------------|-------------------------------|--------------------------------|------------------------------------------|
+| SSP1-1.9  | very low GHG emissions: CO2 emissions cut to net zero around 2050                                                          | 1.6 °C	                       | 1.4 °C                         | 1.0 – 1.8 °C                             |        
+| SSP1-2.6  | low GHG emissions: CO2 emissions cut to net zero around 2075.                                                              | 1.7 °C	                       | 1.8 °C	                        | 1.3 – 2.4 °C                             |        
+| SSP2-4.5  | intermediate GHG emissions: CO2 emissions around current levels until 2050, then falling but not reaching net zero by 2100 | 2.0 °C	                       | 2.7 °C	                        | 2.1 – 3.5 °C                             |
+| SSP3-7.0  | high GHG emissions: CO2 emissions double by 2100                                                                           | 2.1 °C	                       | 3.6 °C	                        | 2.8 – 4.6 °C                             |
+| SSP5-8.5  | very high GHG emissions: CO2 emissions double by 2075                                                                      | 2.4 °C	                       | 4.4 °C	                        | 3.3 – 5.7 °C                             |
+
+Here, we download the ocean pH data based on historical and SSP585 scenarios to demonstrate how to obtain the CMIP6 climate change data for the seabed.
+
 # Download CMIP6 data
 
-The example seawater pH data cane be downloaded from Earth System Grid Federation ([ESGF](https://aims2.llnl.gov/search/?project=CMIP6&resultType=originals+only&activeFacets=%7B%22variable_id%22%3A%22ph%22%2C%22cf_standard_name%22%3A%22sea_water_ph_reported_on_total_scale%22%2C%22source_id%22%3A%22NorESM2-MM%22%2C%22institution_id%22%3A%22NCC%22%2C%22experiment_id%22%3A%22ssp585%22%2C%22nominal_resolution%22%3A%22100+km%22%2C%22table_id%22%3A%22Oyr%22%2C%22frequency%22%3A%22yr%22%2C%22realm%22%3A%22ocnBgchem%22%2C%22variant_label%22%3A%22r1i1p1f1%22%2C%22grid_label%22%3A%22gr%22%7D)). We use Norwegian Earth System Model ([NorESM2](https://gmd.copernicus.org/articles/13/6165/2020/)) outputs from from [2021 to 2030](http://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/ScenarioMIP/NCC/NorESM2-MM/ssp585/r1i1p1f1/Oyr/ph/gr/v20230616/ph_Oyr_NorESM2-MM_ssp585_r1i1p1f1_gr_2021-2030.nc) and [2091 to 2100](http://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/ScenarioMIP/NCC/NorESM2-MM/ssp585/r1i1p1f1/Oyr/ph/gr/v20230616/ph_Oyr_NorESM2-MM_ssp585_r1i1p1f1_gr_2091-2100.nc) as examples. You may save these files in your download folder. The full url list of yearly dataset from 2015 to 2298 is available as weget shell script on [ESGF](https://aims2.llnl.gov/search/?project=CMIP6&resultType=originals+only&activeFacets=%7B%22variable_id%22%3A%22ph%22%2C%22cf_standard_name%22%3A%22sea_water_ph_reported_on_total_scale%22%2C%22source_id%22%3A%22NorESM2-MM%22%2C%22institution_id%22%3A%22NCC%22%2C%22experiment_id%22%3A%22ssp585%22%2C%22nominal_resolution%22%3A%22100+km%22%2C%22table_id%22%3A%22Oyr%22%2C%22frequency%22%3A%22yr%22%2C%22realm%22%3A%22ocnBgchem%22%2C%22variant_label%22%3A%22r1i1p1f1%22%2C%22grid_label%22%3A%22gr%22%7D).
+The example seawater pH data can be downloaded from Earth System Grid Federation ([ESGF](https://aims2.llnl.gov/search/?project=CMIP6&resultType=originals+only&activeFacets=%7B%22variable_id%22%3A%22ph%22%2C%22cf_standard_name%22%3A%22sea_water_ph_reported_on_total_scale%22%2C%22source_id%22%3A%22NorESM2-MM%22%2C%22institution_id%22%3A%22NCC%22%2C%22nominal_resolution%22%3A%22100+km%22%2C%22table_id%22%3A%22Oyr%22%2C%22frequency%22%3A%22yr%22%2C%22realm%22%3A%22ocnBgchem%22%2C%22variant_label%22%3A%22r1i1p1f1%22%2C%22grid_label%22%3A%22gr%22%7D)). We use Norwegian Earth System Model ([NorESM2](https://gmd.copernicus.org/articles/13/6165/2020/)) outputs from from [1850 to 1859](http://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/CMIP/NCC/NorESM2-MM/historical/r1i1p1f1/Oyr/ph/gr/v20191108/ph_Oyr_NorESM2-MM_historical_r1i1p1f1_gr_1850-1859.nc), [1950 to 1959](http://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/CMIP/NCC/NorESM2-MM/historical/r1i1p1f1/Oyr/ph/gr/v20191108/ph_Oyr_NorESM2-MM_historical_r1i1p1f1_gr_1950-1959.nc), [2021 to 2030](http://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/ScenarioMIP/NCC/NorESM2-MM/ssp585/r1i1p1f1/Oyr/ph/gr/v20230616/ph_Oyr_NorESM2-MM_ssp585_r1i1p1f1_gr_2021-2030.nc), and [2091 to 2100](http://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/ScenarioMIP/NCC/NorESM2-MM/ssp585/r1i1p1f1/Oyr/ph/gr/v20230616/ph_Oyr_NorESM2-MM_ssp585_r1i1p1f1_gr_2091-2100.nc) as examples. You may save these NetCDF files in your download folde for later analyses. The full url list of yearly dataset from 1850 to 2014 and 2015 to 2298 is available as weget shell script on [ESGF](https://aims2.llnl.gov/search/?project=CMIP6&resultType=originals+only&activeFacets=%7B%22variable_id%22%3A%22ph%22%2C%22cf_standard_name%22%3A%22sea_water_ph_reported_on_total_scale%22%2C%22source_id%22%3A%22NorESM2-MM%22%2C%22institution_id%22%3A%22NCC%22%2C%22nominal_resolution%22%3A%22100+km%22%2C%22table_id%22%3A%22Oyr%22%2C%22frequency%22%3A%22yr%22%2C%22realm%22%3A%22ocnBgchem%22%2C%22variant_label%22%3A%22r1i1p1f1%22%2C%22grid_label%22%3A%22gr%22%7D).
 
 # Open CMIP6 data
 
-The CMIP6 model projection is a 4-way array object containing x, y , z, and t. We can see the horizontal, vertical, and temporal resolution of the model projection.
+Here, we  use Norwegian Earth System Model ([NorESM2](https://gmd.copernicus.org/articles/13/6165/2020/)) as an example. We can first open and read the netCDF Files from the download folder where these files were saved. The CMIP6 model projections within the NetCDF is a 4-way array object containing x, y , z, and t. We can see the horizontal, vertical, and temporal resolution of the NorESM2 data.
 
 ```{r}
-# Seawater pH from 2021 to 2030
-m1 <- nc_open("C:/Users/user/Downloads/ph_Oyr_NorESM2-MM_ssp585_r1i1p1f1_gr_2021-2030.nc") 
+# Seawater pH from 1850 to 1859
+m1 <- nc_open("C:/Users/user/Downloads/ph_Oyr_NorESM2-MM_historical_r1i1p1f1_gr_1850-1859.nc") 
 a1 <- ncvar_get(m1, "ph") 
 
-# Seawater pH from 2019 to 2100
-m2 <- nc_open("C:/Users/user/Downloads/ph_Oyr_NorESM2-MM_ssp585_r1i1p1f1_gr_2091-2100.nc") 
+# Seawater pH from 1950 to 1959
+m2 <- nc_open("C:/Users/user/Downloads/ph_Oyr_NorESM2-MM_historical_r1i1p1f1_gr_1950-1959.nc") 
 a2 <- ncvar_get(m2, "ph") 
+
+# Seawater pH from 2021 to 2030
+m3 <- nc_open("C:/Users/user/Downloads/ph_Oyr_NorESM2-MM_ssp585_r1i1p1f1_gr_2021-2030.nc") 
+a3 <- ncvar_get(m3, "ph") 
+
+# Seawater pH from 2019 to 2100
+m4 <- nc_open("C:/Users/user/Downloads/ph_Oyr_NorESM2-MM_ssp585_r1i1p1f1_gr_2091-2100.nc") 
+a4 <- ncvar_get(m4, "ph") 
 
 # Dimensions of model projections
 dim(a1)
 ```
-The bottom most layer can be obtained by overlaying projection from deepest to shallowest layers. Here, we made a simple function, keep_b(), to extract the seabed data.
+
+# Extract the bottom data
+
+The bottom most layer can be obtained by overlaying the projections from the deepest to the shallowest layers. Here, we made a simple function, called keep_b(), to extract the seabed data.
 
 ```{r}
 keep_b <- 
@@ -67,12 +96,16 @@ After overlaying, the 4-way array become 3-way array consisting of 10 layers (or
 ```{r}
 b1 <- keep_b(a1)
 b2 <- keep_b(a2)
+b3 <- keep_b(a3)
+b4 <- keep_b(a4)
 
 # Dimensions of the bottom most projections
 dim(b1)
 ```
 
-# Convert [NorESM2](https://gmd.copernicus.org/articles/13/6165/2020/) outputs to latlon projection
+# Compare seabed pH at 1859, 1950, 2025, and 2100
+
+For visualization, the [NorESM2](https://gmd.copernicus.org/articles/13/6165/2020/) outputs need to be converted to latlon projection. THe seabed pH among 1950, 2025, and 2100 are compared using ggolot2.
 
 ```{r}
 # Coordinates of each grid
@@ -81,18 +114,20 @@ x <- as.vector(ncvar_get(m1, "longitude"))
 x[x>180] <- x[x>180]-360
 ```
 
-# Compare seabed pH between 2021 and 2100
-
 ```{r}
-# 2021: first layer of b1
-b2021 <- cbind(x, y, value=b1[,,1] %>% as.vector) %>% data.frame %>%　na.omit
-# 2100: 10th layer of b2
-b2100 <- cbind(x, y, value=b2[,,10] %>% as.vector) %>% data.frame %>%　na.omit
+# 1850: first layer of b1
+o1 <- cbind(x, y, value=b1[,,1] %>% as.vector) %>% data.frame %>%　na.omit
+# 1950: first layer of b2
+o2 <- cbind(x, y, value=b2[,,1] %>% as.vector) %>% data.frame %>%　na.omit
+# 2025: fifth layer of b3
+o3 <- cbind(x, y, value=b3[,,5] %>% as.vector) %>% data.frame %>%　na.omit
+# 2100: 10th layer of b4
+o4 <- cbind(x, y, value=b4[,,10] %>% as.vector) %>% data.frame %>%　na.omit
 
-out <- rbind(cbind(b2021, year=2021), cbind(b2100, year=2100))
+out <- rbind(cbind(o1, year=1850), cbind(o2, year=1950), cbind(o3, year=2025), cbind(o4, year=2100))
 ```
 
-```{r, fig.width=10, fig.height=4}
+```{r, fig.width=10, fig.height=8}
 ggplot(data=out, aes(x=x, y=y, colour=value))+
   geom_point()+
   coord_map()+
@@ -101,3 +136,81 @@ ggplot(data=out, aes(x=x, y=y, colour=value))+
   facet_wrap(~year)
 ```
 
+# Compare decadal seabed average pH
+
+```{r}
+# Decadal average from 1850 to 1859 
+o1 <- cbind(x, y, value=b1 %>% apply(c(1,2), mean) %>% as.vector) %>% data.frame %>%　na.omit
+# Decadal average from 1950 to 1959 
+o2 <- cbind(x, y, value=b2 %>% apply(c(1,2), mean) %>% as.vector) %>% data.frame %>%　na.omit
+# Decadal average from 2021 to 2030 
+o3 <- cbind(x, y, value=b3 %>% apply(c(1,2), mean) %>% as.vector) %>% data.frame %>%　na.omit
+# Decadal average from 2091 to 2100 
+o4 <- cbind(x, y, value=b4 %>% apply(c(1,2), mean) %>% as.vector) %>% data.frame %>%　na.omit
+
+out <- rbind(cbind(o1, year="Average 1850 to 1859"), cbind(o2, year="Average 1950 to 1959"), cbind(o3, year="Average 2021 to 2030"), cbind(o4, year="Average 2091 to 2100"))
+```
+
+```{r, fig.width=10, fig.height=8}
+ggplot(data=out, aes(x=x, y=y, colour=value))+
+  geom_point()+
+  coord_map()+
+  labs(x="", y="", colour="pH")+
+  scale_colour_viridis_c(option = "turbo")+
+  facet_wrap(~year)
+```
+
+# Compare decadal standard deviation of seabed pH
+
+```{r}
+# Decadal average from 1850 to 1859 
+o1 <- cbind(x, y, value=b1 %>% apply(c(1,2), sd) %>% as.vector) %>% data.frame %>%　na.omit
+# Decadal average from 1950 to 1959 
+o2 <- cbind(x, y, value=b2 %>% apply(c(1,2), sd) %>% as.vector) %>% data.frame %>%　na.omit
+# Decadal average from 2021 to 2030 
+o3 <- cbind(x, y, value=b3 %>% apply(c(1,2), sd) %>% as.vector) %>% data.frame %>%　na.omit
+# Decadal average from 2091 to 2100 
+o4 <- cbind(x, y, value=b4 %>% apply(c(1,2), sd) %>% as.vector) %>% data.frame %>%　na.omit
+
+out <- rbind(cbind(o1, year="Stdev 1850 to 1859"), cbind(o2, year="Stdev 1950 to 1959"), cbind(o3, year="Stdev 2021 to 2030"), cbind(o4, year="Stdev 2091 to 2100"))
+```
+
+```{r, fig.width=10, fig.height=8}
+ggplot(data=out, aes(x=x, y=y, colour=value))+
+  geom_point()+
+  coord_map()+
+  labs(x="", y="", colour="pH")+
+  scale_colour_viridis_c(option = "turbo", limits=c(0, 0.04))+
+  facet_wrap(~year)
+```
+
+# Compare decadal coeficient of variation of seabed pH
+
+```{r}
+# Decadal average from 1850 to 1859 
+o1 <- cbind(x, y, value=b1 %>% apply(c(1,2), function(x)sd(x)/mean(x)) %>% as.vector) %>% data.frame %>%　na.omit
+# Decadal average from 1950 to 1959 
+o2 <- cbind(x, y, value=b2 %>% apply(c(1,2), function(x)sd(x)/mean(x)) %>% as.vector) %>% data.frame %>%　na.omit
+# Decadal average from 2021 to 2030 
+o3 <- cbind(x, y, value=b3 %>% apply(c(1,2), function(x)sd(x)/mean(x)) %>% as.vector) %>% data.frame %>%　na.omit
+# Decadal average from 2091 to 2100 
+o4 <- cbind(x, y, value=b4 %>% apply(c(1,2), function(x)sd(x)/mean(x)) %>% as.vector) %>% data.frame %>%　na.omit
+
+out <- rbind(cbind(o1, year="cv 1850 to 1859"), cbind(o2, year="cv 1950 to 1959"), cbind(o3, year="cv 2021 to 2030"), cbind(o4, year="cv 2091 to 2100"))
+```
+
+```{r, fig.width=10, fig.height=8}
+ggplot(data=out, aes(x=x, y=y, colour=value*100))+
+  geom_point()+
+  coord_map()+
+  labs(x="", y="", colour="pH (%)")+
+  scale_colour_viridis_c(option = "turbo", limits=c(0, 0.5))+
+  facet_wrap(~year)
+```
+
+# Excercises
+
+* Compare and display seabed pH at 1859, 1959, 2030, and 2100.
+* Compare and display sea surface pH at 1850, 1950, 2025, and 2100.
+* Compare and display decadal mean sea surface pH from 1850 to 1869, 1950 to 1959, 2021 to 2030, and 2091 to 2100.
+* Compare and display decadal standard deviation of sea surface pH from 1850 to 1869, 1950 to 1959, 2021 to 2030, and 2091 to 2100.
