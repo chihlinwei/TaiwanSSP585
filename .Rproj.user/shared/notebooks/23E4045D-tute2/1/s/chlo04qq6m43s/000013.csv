@@ -1,5 +1,0 @@
-"0","basemap(-etopo2022, title=""Depth (m)"", colours = terrain.colors(7))+"
-"0","  geom_sf(data=as(canyon, ""sf""), size=2, colour=""blue"")+"
-"0","  geom_sf(data=as(seamount, ""sf""), size=2, colour=""green"")+"
-"0","  geom_sf(data=as(vent, ""sf""), size=2, colour=""red"")+"
-"0","  geom_sf(data=as(coral, ""sf""), size=2, colour=""black"")"

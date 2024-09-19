@@ -1,7 +1,0 @@
-"0","out <- cmip6_extoe_constant %>% subset(1:4) %>% mask_habitat"
-"0","out$var <- factor(out$var, labels=c(""When~Delta~POC~flux>2*sigma"", ""When~Delta~DO>2*sigma"", ""When~Delta~pH>2*sigma"", ""When~Delta~Temperature>2*sigma""))"
-"0",""
-"0","ggplot(data=out)+"
-"0","  geom_violin(aes(x=Habitat, y=value), scale = ""width"")+"
-"0","  facet_wrap(~var, scales=""free"", labeller=label_parsed)+"
-"0","  labs(y=""Time of Emergence of Climate Change"")"
