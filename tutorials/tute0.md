@@ -1,7 +1,7 @@
 Download IPCC6 CMIP6 data
 ================
 Chih-Lin Wei
-2024-09-18
+2024-12-02
 
 ``` r
 library(ncdf4)
@@ -42,13 +42,13 @@ from [IPCC
 demonstrating the Shared Socioeconomic Pathways (SSP) used in the IPCC
 Sixth Assessment Report (AR6).
 
-| SSP      | Scenario                                                                                                                   | Estimated warming (2041–2060) | Estimated warming (2081–2100) | Very likely range of warming (2081–2100) |
-|----------|----------------------------------------------------------------------------------------------------------------------------|-------------------------------|-------------------------------|------------------------------------------|
-| SSP1-1.9 | very low GHG emissions: CO2 emissions cut to net zero around 2050                                                          | 1.6 °C                        | 1.4 °C                        | 1.0 – 1.8 °C                             |
-| SSP1-2.6 | low GHG emissions: CO2 emissions cut to net zero around 2075.                                                              | 1.7 °C                        | 1.8 °C                        | 1.3 – 2.4 °C                             |
-| SSP2-4.5 | intermediate GHG emissions: CO2 emissions around current levels until 2050, then falling but not reaching net zero by 2100 | 2.0 °C                        | 2.7 °C                        | 2.1 – 3.5 °C                             |
-| SSP3-7.0 | high GHG emissions: CO2 emissions double by 2100                                                                           | 2.1 °C                        | 3.6 °C                        | 2.8 – 4.6 °C                             |
-| SSP5-8.5 | very high GHG emissions: CO2 emissions double by 2075                                                                      | 2.4 °C                        | 4.4 °C                        | 3.3 – 5.7 °C                             |
+| SSP | Scenario | Estimated warming (2041–2060) | Estimated warming (2081–2100) | Very likely range of warming (2081–2100) |
+|----|----|----|----|----|
+| SSP1-1.9 | very low GHG emissions: CO2 emissions cut to net zero around 2050 | 1.6 °C | 1.4 °C | 1.0 – 1.8 °C |
+| SSP1-2.6 | low GHG emissions: CO2 emissions cut to net zero around 2075. | 1.7 °C | 1.8 °C | 1.3 – 2.4 °C |
+| SSP2-4.5 | intermediate GHG emissions: CO2 emissions around current levels until 2050, then falling but not reaching net zero by 2100 | 2.0 °C | 2.7 °C | 2.1 – 3.5 °C |
+| SSP3-7.0 | high GHG emissions: CO2 emissions double by 2100 | 2.1 °C | 3.6 °C | 2.8 – 4.6 °C |
+| SSP5-8.5 | very high GHG emissions: CO2 emissions double by 2075 | 2.4 °C | 4.4 °C | 3.3 – 5.7 °C |
 
 Here, we download the ocean pH data based on historical and SSP585
 scenarios to demonstrate how to obtain the CMIP6 climate change data for
@@ -145,7 +145,7 @@ dim(b1)
 #> [1] 360 385  10
 ```
 
-# Compare seabed pH at 1859, 1950, 2025, and 2100
+# Compare seabed pH at 1850, 1950, 2025, and 2100
 
 For visualization, the
 [NorESM2](https://gmd.copernicus.org/articles/13/6165/2020/) outputs

@@ -103,7 +103,7 @@ b4 <- keep_b(a4)
 dim(b1)
 ```
 
-# Compare seabed pH at 1859, 1950, 2025, and 2100
+# Compare seabed pH at 1850, 1950, 2025, and 2100
 
 For visualization, the [NorESM2](https://gmd.copernicus.org/articles/13/6165/2020/) outputs need to be converted to latlon projection. THe seabed pH among 1950, 2025, and 2100 are compared using ggolot2.
 
